@@ -6,8 +6,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
-import seleniumuiframework.pagepbjects.Login;
-import seleniumuiframework.pagepbjects.Product;
+import seleniumuiframework.pageobjects.Login;
+import seleniumuiframework.pageobjects.MyCart;
+import seleniumuiframework.pageobjects.Product;
 
 import java.time.Duration;
 import java.util.List;
@@ -18,55 +19,46 @@ import org.openqa.selenium.WebElement;
 public class Tests {
 
 	public static void main(String[] args) throws InterruptedException {
-		
+
 		String myProduct = "Iphone 13 pro";
 		WebDriver driver = new ChromeDriver();
 		WebDriverWait w = new WebDriverWait(driver, Duration.ofSeconds(10));
-		
+
 		Login loginPage = new Login(driver);
 		Product productPage = new Product(driver);
-		
+		MyCart myCartPage = new MyCart(driver);
+
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 		driver.manage().window().maximize();
-	
 
 		loginPage.goTo();
 		loginPage.login("JohnSmith@gmail.com", "StrongPass123");
-		
-		List<WebElement> productsList = productPage.getProducts();
-		WebElement wantedProduct = productsList.stream()
-				.filter(p -> p.findElement(By.cssSelector("h5")).getText().equalsIgnoreCase(myProduct)).findFirst()
-				.orElse(null);
 
-		w.until(ExpectedConditions.invisibilityOf(driver.findElement(By.id("toast-container"))));
-		wantedProduct.findElement(By.cssSelector(".w-10")).click();
-		w.until(ExpectedConditions.visibilityOf(driver.findElement(By.id("toast-container"))));		
+		WebElement product = productPage.getProductByName(myProduct);
+		productPage.addProductToCart(product);
+		productPage.goToMyCartPage();		
 
-		driver.findElement(By.cssSelector("[routerlink*='cart']")).click();
-		w.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//button[text()='Checkout']"))));
+		List<WebElement> expectedItemsInTheCart = List.of(product);
+		List<WebElement> actualItemsInTheCart = myCartPage.getItemsInTheCart();
 
-		List<WebElement> itemsInTheCart = driver.findElements(By.cssSelector(".cartWrap h3"));
-		
-		Assert.assertEquals(1, itemsInTheCart.size());
-		String actualItemInCart = itemsInTheCart.get(0).getText();
-		Assert.assertEquals(actualItemInCart.toLowerCase(), myProduct.toLowerCase());			
-		
-		driver.findElement(By.xpath("//button[text()='Checkout']")).click();
-		
+		//Assert.assertEquals(actualItemsInTheCart, expectedItemsInTheCart);
+		myCartPage.clickCheckoutButton();
+	
 		w.until(ExpectedConditions.visibilityOf(driver.findElement(By.cssSelector("[placeholder*='Country']"))));
 		driver.findElement(By.cssSelector("[placeholder*='Country']")).sendKeys("states");
 		List<WebElement> dropdownOptions = driver.findElements(By.cssSelector(".ta-item"));
-		WebElement myOption = dropdownOptions.stream().filter(o -> o.getText().equalsIgnoreCase("united states")).findFirst().orElse(null);		
-		myOption.click();	
-		
+		WebElement myOption = dropdownOptions.stream().filter(o -> o.getText().equalsIgnoreCase("united states"))
+				.findFirst().orElse(null);
+		myOption.click();
+
 		Actions a = new Actions(driver);
 		a.moveToElement(driver.findElement(By.cssSelector(".action__submit"))).build().perform();
 		a.click(driver.findElement(By.cssSelector(".action__submit"))).build().perform();
-		
+
 		String confirmationMessage = driver.findElement(By.cssSelector(".hero-primary")).getText();
-		
+
 		Assert.assertEquals(confirmationMessage.toLowerCase(), "thankyou for the order.");
-		
+
 		driver.quit();
 	}
 

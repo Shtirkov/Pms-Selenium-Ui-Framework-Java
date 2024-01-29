@@ -1,4 +1,4 @@
-package seleniumuiframework.pagepbjects;
+package seleniumuiframework.pageobjects;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,7 +9,7 @@ import seleniumuiframework.abstractcomponents.BasePage;
 
 public class Login extends BasePage{
 
-	WebDriver driver;
+	private WebDriver driver;
 	
 	public Login(WebDriver driver) {
 		super(driver);
@@ -17,9 +17,9 @@ public class Login extends BasePage{
 		PageFactory.initElements(driver, this);
 	}
 	
-	public final String userEmailLocator ="userEmail";
-	public final String userPasswordLocator ="userPassword";
-	public final String loginLocator ="login";
+	private final String userEmailLocator ="userEmail";
+	private final String userPasswordLocator ="userPassword";
+	private final String loginLocator ="login";
 	
 	@FindBy(id=userEmailLocator)
 	WebElement userEmail;

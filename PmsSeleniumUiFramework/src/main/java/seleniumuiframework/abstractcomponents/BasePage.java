@@ -9,15 +9,24 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public abstract class BasePage {
 	
-	WebDriver driver;
+	//private WebDriver driver;
+	private WebDriverWait wait;
 	
 	public BasePage(WebDriver driver) {
-		this.driver=driver;
+		//this.driver=driver;
+		this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 	}
 	
-	public void waitForElementToAppear(By locator) {
-		WebDriverWait w = new WebDriverWait(driver, Duration.ofSeconds(10));
-		w.until(ExpectedConditions.visibilityOfElementLocated(locator));
+	protected void waitForElementToAppear(By locator) {		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+	}
+	
+	protected void waitForElementToDisappear(By locator) {		
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
+	}
+	
+	protected void waitForElementToBeClickable(By locator) {
+		wait.until(ExpectedConditions.elementToBeClickable(locator));
 	}
 	
 }
