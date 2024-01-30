@@ -17,17 +17,17 @@ public class Login extends BasePage{
 		PageFactory.initElements(driver, this);
 	}
 	
-	private final String userEmailLocator ="userEmail";
-	private final String userPasswordLocator ="userPassword";
-	private final String loginLocator ="login";
+	private final String USER_EMAIL_LOCATOR ="userEmail";
+	private final String USER_PASSWORD_LOCATOR ="userPassword";
+	private final String LOGIN_LOCATOR ="login";
 	
-	@FindBy(id=userEmailLocator)
+	@FindBy(id=USER_EMAIL_LOCATOR)
 	WebElement userEmail;
 	
-	@FindBy(id=userPasswordLocator)
+	@FindBy(id=USER_PASSWORD_LOCATOR)
 	WebElement userPassword;
 	
-	@FindBy(id=loginLocator)
+	@FindBy(id=LOGIN_LOCATOR)
 	WebElement loginButton;
 	
 	public void goTo() {

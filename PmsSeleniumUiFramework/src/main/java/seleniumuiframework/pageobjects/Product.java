@@ -20,22 +20,22 @@ public class Product extends BasePage {
 		PageFactory.initElements(driver, this);
 	}
 
-	private final String productsLocator = ".mb-3";
-	private final String toastMessageLocator = "toast-container";
-	private final String addToCartLocator = ".w-10";
-	private final String cartButtonLocator = "[routerlink*='cart']";
+	private final String PRODUCTS_LOCATOR = ".mb-3";
+	private final String TOAST_MESSAGE_LOCATOR = "toast-container";
+	private final String ADD_TO_CART_LOCATOR = ".w-10";
+	private final String CART_BUTTON_LOCATOR = "[routerlink*='cart']";
 
-	@FindBy(css = productsLocator)
+	@FindBy(css = PRODUCTS_LOCATOR)
 	List<WebElement> products;
 
-	@FindBy(css = toastMessageLocator)
+	@FindBy(css = TOAST_MESSAGE_LOCATOR)
 	WebElement toastContainer;
 
-	@FindBy(css = cartButtonLocator)
+	@FindBy(css = CART_BUTTON_LOCATOR)
 	WebElement cartButton;
 
 	private List<WebElement> getProducts() {
-		waitForElementToAppear(By.cssSelector(productsLocator));
+		waitForElementToAppear(By.cssSelector(PRODUCTS_LOCATOR));
 		return products;
 	}
 
@@ -46,14 +46,15 @@ public class Product extends BasePage {
 	}
 
 	public void addProductToCart(WebElement product) {
-		product.findElement(By.cssSelector(addToCartLocator)).click();
-		waitForElementToAppear(By.id(toastMessageLocator));
-		waitForElementToDisappear(By.id(toastMessageLocator));
+		waitForElementToDisappear(By.id(TOAST_MESSAGE_LOCATOR));
+		product.findElement(By.cssSelector(ADD_TO_CART_LOCATOR)).click();
+		waitForElementToAppear(By.id(TOAST_MESSAGE_LOCATOR));
+		waitForElementToDisappear(By.id(TOAST_MESSAGE_LOCATOR));
 	}
 
 	public void goToMyCartPage() {
-		waitForElementToBeClickable(By.cssSelector(cartButtonLocator));
-		cartButton.click();
+		waitForElementToBeClickable(By.cssSelector(CART_BUTTON_LOCATOR));
+		cartButton.click();		
 	}
 
 }

@@ -1,18 +1,14 @@
 package seleniumuiframework.tests;
 
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-
+import seleniumuiframework.pageobjects.Checkout;
 import seleniumuiframework.pageobjects.Login;
 import seleniumuiframework.pageobjects.MyCart;
+import seleniumuiframework.pageobjects.OrderConfirmation;
 import seleniumuiframework.pageobjects.Product;
-
 import java.time.Duration;
 import java.util.List;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -22,11 +18,12 @@ public class Tests {
 
 		String myProduct = "Iphone 13 pro";
 		WebDriver driver = new ChromeDriver();
-		WebDriverWait w = new WebDriverWait(driver, Duration.ofSeconds(10));
 
 		Login loginPage = new Login(driver);
 		Product productPage = new Product(driver);
 		MyCart myCartPage = new MyCart(driver);
+		Checkout checkoutPage = new Checkout(driver);
+		OrderConfirmation orderConfirmationPage = new OrderConfirmation(driver);
 
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 		driver.manage().window().maximize();
@@ -36,28 +33,23 @@ public class Tests {
 
 		WebElement product = productPage.getProductByName(myProduct);
 		productPage.addProductToCart(product);
-		productPage.goToMyCartPage();		
+		productPage.goToMyCartPage();
 
-		List<WebElement> expectedItemsInTheCart = List.of(product);
+		List<String> expectedItemsInTheCart = List.of(myProduct);
 		List<WebElement> actualItemsInTheCart = myCartPage.getItemsInTheCart();
 
-		//Assert.assertEquals(actualItemsInTheCart, expectedItemsInTheCart);
+		Assert.assertEquals(actualItemsInTheCart.size(), expectedItemsInTheCart.size());
+
+		for (int i = 0; i < expectedItemsInTheCart.size(); i++) {
+			String actualProductName = actualItemsInTheCart.get(i).getText().toLowerCase();
+			String expectedProductName = expectedItemsInTheCart.get(i).toLowerCase();
+			Assert.assertEquals(actualProductName, expectedProductName);
+		}
+
 		myCartPage.clickCheckoutButton();
-	
-		w.until(ExpectedConditions.visibilityOf(driver.findElement(By.cssSelector("[placeholder*='Country']"))));
-		driver.findElement(By.cssSelector("[placeholder*='Country']")).sendKeys("states");
-		List<WebElement> dropdownOptions = driver.findElements(By.cssSelector(".ta-item"));
-		WebElement myOption = dropdownOptions.stream().filter(o -> o.getText().equalsIgnoreCase("united states"))
-				.findFirst().orElse(null);
-		myOption.click();
-
-		Actions a = new Actions(driver);
-		a.moveToElement(driver.findElement(By.cssSelector(".action__submit"))).build().perform();
-		a.click(driver.findElement(By.cssSelector(".action__submit"))).build().perform();
-
-		String confirmationMessage = driver.findElement(By.cssSelector(".hero-primary")).getText();
-
-		Assert.assertEquals(confirmationMessage.toLowerCase(), "thankyou for the order.");
+		checkoutPage.selectCountryByName("United states");
+		checkoutPage.placeOrder();
+		Assert.assertEquals(orderConfirmationPage.getOrderConfirmationMessage(), "thankyou for the order.");
 
 		driver.quit();
 	}

@@ -11,31 +11,28 @@ import org.openqa.selenium.support.PageFactory;
 import seleniumuiframework.abstractcomponents.BasePage;
 
 public class MyCart extends BasePage {
-
-	private WebDriver driver;
-
+	
 	public MyCart(WebDriver driver) {
-		super(driver);
-		this.driver = driver;
+		super(driver);		
 		PageFactory.initElements(driver, this);
 	}
 
-	private final String checkoutButtonLocator = "//button[text()='Checkout']";
-	private final String itemsInTheCartLocator = ".cartWrap";
+	private final String CHECKOUT_BUTTON_LOCATOR = "//button[text()='Checkout']";
+	private final String ITEMS_IN_THE_CART_LOCATOR = ".cartWrap h3";
 
-	@FindBy(xpath = checkoutButtonLocator)
+	@FindBy(xpath = CHECKOUT_BUTTON_LOCATOR)
 	WebElement checkoutButton;
 
-	@FindBy(xpath = itemsInTheCartLocator)
+	@FindBy(css = ITEMS_IN_THE_CART_LOCATOR)
 	List<WebElement> itemsInTheCart;
 
 	public List<WebElement> getItemsInTheCart() {
-		waitForElementToAppear(By.xpath(checkoutButtonLocator));
+		waitForElementToAppear(By.xpath(CHECKOUT_BUTTON_LOCATOR));
 		return itemsInTheCart;
 	}
 	
 	public void clickCheckoutButton() {
-		waitForElementToBeClickable(By.xpath(checkoutButtonLocator));
+		waitForElementToBeClickable(By.xpath(CHECKOUT_BUTTON_LOCATOR));
 		checkoutButton.click();
 	}
 
