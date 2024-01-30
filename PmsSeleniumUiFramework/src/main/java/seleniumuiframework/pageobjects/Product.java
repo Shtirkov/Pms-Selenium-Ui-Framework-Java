@@ -12,27 +12,20 @@ import seleniumuiframework.abstractcomponents.BasePage;
 
 public class Product extends BasePage {
 
-	WebDriver driver;
-
 	public Product(WebDriver driver) {
-		super(driver);
-		this.driver = driver;
+		super(driver);		
 		PageFactory.initElements(driver, this);
 	}
 
 	private final String PRODUCTS_LOCATOR = ".mb-3";
 	private final String TOAST_MESSAGE_LOCATOR = "toast-container";
 	private final String ADD_TO_CART_LOCATOR = ".w-10";
-	private final String CART_BUTTON_LOCATOR = "[routerlink*='cart']";
-
+	
 	@FindBy(css = PRODUCTS_LOCATOR)
 	List<WebElement> products;
 
 	@FindBy(css = TOAST_MESSAGE_LOCATOR)
 	WebElement toastContainer;
-
-	@FindBy(css = CART_BUTTON_LOCATOR)
-	WebElement cartButton;
 
 	private List<WebElement> getProducts() {
 		waitForElementToAppear(By.cssSelector(PRODUCTS_LOCATOR));
@@ -51,10 +44,4 @@ public class Product extends BasePage {
 		waitForElementToAppear(By.id(TOAST_MESSAGE_LOCATOR));
 		waitForElementToDisappear(By.id(TOAST_MESSAGE_LOCATOR));
 	}
-
-	public void goToMyCartPage() {
-		waitForElementToBeClickable(By.cssSelector(CART_BUTTON_LOCATOR));
-		cartButton.click();		
-	}
-
 }
