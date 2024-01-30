@@ -20,20 +20,20 @@ public class Tests {
 		WebDriver driver = new ChromeDriver();
 
 		Login loginPage = new Login(driver);
-		Product productPage = new Product(driver);
-		MyCart myCartPage = new MyCart(driver);
-		Checkout checkoutPage = new Checkout(driver);
-		OrderConfirmation orderConfirmationPage = new OrderConfirmation(driver);
+		
+		
+		
+		
 
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 		driver.manage().window().maximize();
 
 		loginPage.goTo();
-		loginPage.login("JohnSmith@gmail.com", "StrongPass123");
+		Product productPage = loginPage.login("JohnSmith@gmail.com", "StrongPass123");
 
 		WebElement product = productPage.getProductByName(myProduct);
 		productPage.addProductToCart(product);
-		productPage.goToMyCartPage();
+		MyCart myCartPage=productPage.goToMyCartPage();
 
 		List<String> expectedItemsInTheCart = List.of(myProduct);
 		List<WebElement> actualItemsInTheCart = myCartPage.getItemsInTheCart();
@@ -46,9 +46,10 @@ public class Tests {
 			Assert.assertEquals(actualProductName, expectedProductName);
 		}
 
-		myCartPage.clickCheckoutButton();
+		Checkout checkoutPage = myCartPage.clickCheckoutButton();
 		checkoutPage.selectCountryByName("United states");
-		checkoutPage.placeOrder();
+		OrderConfirmation orderConfirmationPage = checkoutPage.placeOrder();
+		
 		Assert.assertEquals(orderConfirmationPage.getOrderConfirmationMessage(), "thankyou for the order.");
 
 		driver.quit();

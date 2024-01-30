@@ -10,11 +10,15 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import seleniumuiframework.pageobjects.MyCart;
+
 public abstract class BasePage {
 	
+	private WebDriver driver;
 	private WebDriverWait wait;
 	
 	public BasePage(WebDriver driver) {
+		this.driver = driver;
 		this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		PageFactory.initElements(driver, this);
 	}
@@ -36,9 +40,10 @@ public abstract class BasePage {
 		wait.until(ExpectedConditions.elementToBeClickable(locator));
 	}
 	
-	public void goToMyCartPage() {
+	public MyCart goToMyCartPage() {
 		waitForElementToBeClickable(By.cssSelector(CART_BUTTON_LOCATOR));
-		cartButton.click();		
+		cartButton.click();	
+		return new MyCart(driver);
 	}
 	
 }
