@@ -6,10 +6,12 @@ import java.io.IOException;
 import java.time.Duration;
 import java.util.Properties;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
+import org.openqa.selenium.support.FindBy;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
@@ -17,11 +19,15 @@ import seleniumuiframework.pageobjects.Login;
 import seleniumuiframework.pageobjects.Product;
 
 public class BaseTest {
-
-	protected WebDriver driver;
+	
 	private Properties prop;
 	private FileInputStream fis;
-	public Product productPage;
+	private WebDriver driver;
+	public Login loginPage;
+	public final String USER_EMAIL;
+	public final String USER_PASSWORD;
+	public final String INVALID_USER_EMAIL;
+	public final String INVALID_USER_PASSWORD;	
 
 	public BaseTest() {
 		try {
@@ -37,8 +43,13 @@ public class BaseTest {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		USER_EMAIL = prop.getProperty("userEmail");
+		USER_PASSWORD = prop.getProperty("userPassword");
+		INVALID_USER_EMAIL = prop.getProperty("invalidUserEmail");
+		INVALID_USER_PASSWORD = prop.getProperty("invalidUserPassword");
 	}
-
+	
 	private void initializeDriver() throws IOException {
 		String browserType = prop.getProperty("browserType");
 
@@ -67,13 +78,9 @@ public class BaseTest {
 	@BeforeMethod
 	public void launchApplication() throws IOException {
 		initializeDriver();
-		Login loginPage = new Login(driver);
-		String userEmail = prop.getProperty("userEmail");
-		String userPassword = prop.getProperty("userPassword");
-		String applicationUrl = prop.getProperty("applicationUrl");
-		
-		loginPage.goTo(applicationUrl);		
-		productPage = loginPage.login(userEmail, userPassword);		
+		loginPage = new Login(driver);		
+		String applicationUrl = prop.getProperty("applicationUrl");		
+		loginPage.goTo(applicationUrl);				
 	}
 	
 	@AfterMethod

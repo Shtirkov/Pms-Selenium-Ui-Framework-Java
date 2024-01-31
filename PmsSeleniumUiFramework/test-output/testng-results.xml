@@ -2,20 +2,20 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2024-01-31T10:09:27 EET" name="Default suite" finished-at="2024-01-31T10:09:36 EET" duration-ms="9303">
+  <suite started-at="2024-01-31T13:46:06 EET" name="Default suite" finished-at="2024-01-31T13:46:21 EET" duration-ms="14201">
     <groups>
     </groups>
-    <test started-at="2024-01-31T10:09:27 EET" name="Default test" finished-at="2024-01-31T10:09:36 EET" duration-ms="9303">
+    <test started-at="2024-01-31T13:46:06 EET" name="Default test" finished-at="2024-01-31T13:46:21 EET" duration-ms="14201">
       <class name="seleniumuiframework.tests.SubmitOrderTests">
-        <test-method is-config="true" signature="launchApplication()[pri:0, instance:seleniumuiframework.tests.SubmitOrderTests@d9345cd]" started-at="2024-01-31T10:09:27 EET" name="launchApplication" finished-at="2024-01-31T10:09:31 EET" duration-ms="3780" status="PASS">
+        <test-method is-config="true" signature="launchApplication()[pri:0, instance:seleniumuiframework.tests.SubmitOrderTests@d9345cd]" started-at="2024-01-31T13:46:07 EET" name="launchApplication" finished-at="2024-01-31T13:46:14 EET" duration-ms="7721" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- launchApplication -->
-        <test-method signature="submitOrder()[pri:0, instance:seleniumuiframework.tests.SubmitOrderTests@d9345cd]" started-at="2024-01-31T10:09:31 EET" name="submitOrder" finished-at="2024-01-31T10:09:36 EET" duration-ms="5420" status="PASS">
+        <test-method signature="submitOrder()[pri:0, instance:seleniumuiframework.tests.SubmitOrderTests@d9345cd]" started-at="2024-01-31T13:46:14 EET" name="submitOrder" finished-at="2024-01-31T13:46:21 EET" duration-ms="6299" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- submitOrder -->
-        <test-method is-config="true" signature="closeDriver()[pri:0, instance:seleniumuiframework.tests.SubmitOrderTests@d9345cd]" started-at="2024-01-31T10:09:36 EET" name="closeDriver" finished-at="2024-01-31T10:09:36 EET" duration-ms="83" status="PASS">
+        <test-method is-config="true" signature="closeDriver()[pri:0, instance:seleniumuiframework.tests.SubmitOrderTests@d9345cd]" started-at="2024-01-31T13:46:21 EET" name="closeDriver" finished-at="2024-01-31T13:46:21 EET" duration-ms="117" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- closeDriver -->

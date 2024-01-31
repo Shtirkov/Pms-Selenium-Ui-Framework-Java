@@ -16,14 +16,11 @@ public class Product extends BasePage {
 	}
 
 	private final String PRODUCTS_LOCATOR = ".mb-3";
-	private final String TOAST_MESSAGE_LOCATOR = "toast-container";
+	
 	private final String ADD_TO_CART_LOCATOR = ".w-10";
 	
 	@FindBy(css = PRODUCTS_LOCATOR)
 	List<WebElement> products;
-
-	@FindBy(css = TOAST_MESSAGE_LOCATOR)
-	WebElement toastContainer;
 
 	private List<WebElement> getProducts() {
 		waitForElementToAppear(By.cssSelector(PRODUCTS_LOCATOR));

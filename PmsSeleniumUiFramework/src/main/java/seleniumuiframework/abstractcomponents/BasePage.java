@@ -24,6 +24,10 @@ public abstract class BasePage {
 	}
 	
 	private final String CART_BUTTON_LOCATOR = "[routerlink*='cart']";
+	protected final String TOAST_MESSAGE_LOCATOR = "toast-container";
+	
+	@FindBy(id = TOAST_MESSAGE_LOCATOR)
+	WebElement toastMessage;
 	
 	@FindBy(css = CART_BUTTON_LOCATOR)
 	WebElement cartButton;
@@ -44,6 +48,10 @@ public abstract class BasePage {
 		waitForElementToBeClickable(By.cssSelector(CART_BUTTON_LOCATOR));
 		cartButton.click();	
 		return new MyCart(driver);
+	}
+	
+	public String getToastMessageText() {
+		return toastMessage.getText();
 	}
 	
 }

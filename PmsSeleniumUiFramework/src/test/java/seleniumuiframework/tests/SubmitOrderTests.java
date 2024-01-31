@@ -17,6 +17,7 @@ public class SubmitOrderTests extends BaseTest {
 	@Test
 	public void submitOrder() throws IOException {
 		String myProduct = "Iphone 13 pro";		
+		Product productPage = loginPage.login(USER_EMAIL, USER_PASSWORD);
 		WebElement product = productPage.getProductByName(myProduct);
 		productPage.addProductToCart(product);
 		MyCart myCartPage = productPage.goToMyCartPage();
