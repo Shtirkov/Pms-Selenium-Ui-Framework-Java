@@ -29,8 +29,8 @@ public class Login extends BasePage{
 	@FindBy(id=LOGIN_LOCATOR)
 	WebElement loginButton;
 	
-	public void goTo() {
-		driver.get("https://rahulshettyacademy.com/client");
+	public void goTo(String url) {
+		driver.get(url);
 	}
 	
 	public Product login(String email, String password) {
