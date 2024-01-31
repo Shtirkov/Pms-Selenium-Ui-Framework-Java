@@ -17,8 +17,6 @@ public class SubmitOrderTests extends BaseTest {
 	@Test
 	public void submitOrder() throws IOException {
 		String myProduct = "Iphone 13 pro";		
-		Product productPage = launchApplication();
-
 		WebElement product = productPage.getProductByName(myProduct);
 		productPage.addProductToCart(product);
 		MyCart myCartPage = productPage.goToMyCartPage();
@@ -38,9 +36,6 @@ public class SubmitOrderTests extends BaseTest {
 		checkoutPage.selectCountryByName("United states");
 		OrderConfirmation orderConfirmationPage = checkoutPage.placeOrder();
 
-		Assert.assertEquals(orderConfirmationPage.getOrderConfirmationMessage(), "thankyou for the order.");
-
-		driver.quit();
-	}
+		Assert.assertEquals(orderConfirmationPage.getOrderConfirmationMessage(), "thankyou for the order.");	}
 
 }

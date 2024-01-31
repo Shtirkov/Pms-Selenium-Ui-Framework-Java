@@ -10,6 +10,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 
 import seleniumuiframework.pageobjects.Login;
 import seleniumuiframework.pageobjects.Product;
@@ -19,6 +21,7 @@ public class BaseTest {
 	protected WebDriver driver;
 	private Properties prop;
 	private FileInputStream fis;
+	public Product productPage;
 
 	public BaseTest() {
 		try {
@@ -61,7 +64,8 @@ public class BaseTest {
 		driver.manage().window().maximize();
 	}
 
-	public Product launchApplication() throws IOException {
+	@BeforeMethod
+	public void launchApplication() throws IOException {
 		initializeDriver();
 		Login loginPage = new Login(driver);
 		String userEmail = prop.getProperty("userEmail");
@@ -69,6 +73,11 @@ public class BaseTest {
 		String applicationUrl = prop.getProperty("applicationUrl");
 		
 		loginPage.goTo(applicationUrl);		
-		return loginPage.login(userEmail, userPassword);		
+		productPage = loginPage.login(userEmail, userPassword);		
+	}
+	
+	@AfterMethod
+	public void closeDriver() {
+		driver.close();
 	}
 }
