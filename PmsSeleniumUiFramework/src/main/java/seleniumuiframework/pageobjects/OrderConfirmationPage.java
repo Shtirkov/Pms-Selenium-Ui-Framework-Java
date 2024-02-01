@@ -6,9 +6,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import seleniumuiframework.abstractcomponents.BasePage;
 
-public class OrderConfirmation extends BasePage {
+public class OrderConfirmationPage extends BasePage {
 
-	public OrderConfirmation(WebDriver driver) {
+	public OrderConfirmationPage(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(driver, this);
 	}

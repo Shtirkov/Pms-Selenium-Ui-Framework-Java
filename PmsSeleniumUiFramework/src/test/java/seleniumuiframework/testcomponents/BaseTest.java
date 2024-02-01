@@ -6,28 +6,25 @@ import java.io.IOException;
 import java.time.Duration;
 import java.util.Properties;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
-import org.openqa.selenium.support.FindBy;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-
-import seleniumuiframework.pageobjects.Login;
-import seleniumuiframework.pageobjects.Product;
+import seleniumuiframework.pageobjects.LoginPage;
 
 public class BaseTest {
 	
 	private Properties prop;
 	private FileInputStream fis;
 	private WebDriver driver;
-	public Login loginPage;
+	
 	public final String USER_EMAIL;
 	public final String USER_PASSWORD;
 	public final String INVALID_USER_EMAIL;
 	public final String INVALID_USER_PASSWORD;	
+	public LoginPage loginPage;
 
 	public BaseTest() {
 		try {
@@ -78,7 +75,7 @@ public class BaseTest {
 	@BeforeMethod
 	public void launchApplication() throws IOException {
 		initializeDriver();
-		loginPage = new Login(driver);		
+		loginPage = new LoginPage(driver);		
 		String applicationUrl = prop.getProperty("applicationUrl");		
 		loginPage.goTo(applicationUrl);				
 	}

@@ -8,11 +8,11 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import seleniumuiframework.abstractcomponents.BasePage;
 
-public class MyCart extends BasePage {
+public class MyCartPage extends BasePage {
 	
 	private WebDriver driver;
 	
-	public MyCart(WebDriver driver) {
+	public MyCartPage(WebDriver driver) {
 		super(driver);		
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
@@ -32,10 +32,10 @@ public class MyCart extends BasePage {
 		return itemsInTheCart;
 	}
 	
-	public Checkout clickCheckoutButton() {
+	public CheckoutPage clickCheckoutButton() {
 		waitForElementToBeClickable(By.xpath(CHECKOUT_BUTTON_LOCATOR));
 		checkoutButton.click();
-		return new Checkout(driver);
+		return new CheckoutPage(driver);
 	}
 
 }

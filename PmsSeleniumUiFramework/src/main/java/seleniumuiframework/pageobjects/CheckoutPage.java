@@ -8,11 +8,11 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import seleniumuiframework.abstractcomponents.BasePage;
 
-public class Checkout extends BasePage {
+public class CheckoutPage extends BasePage {
 
 	private WebDriver driver;
 	
-	public Checkout(WebDriver driver) {
+	public CheckoutPage(WebDriver driver) {
 		super(driver);
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
@@ -39,9 +39,9 @@ public class Checkout extends BasePage {
 		myOption.click();
 	}
 
-	public OrderConfirmation placeOrder() {
+	public OrderConfirmationPage placeOrder() {
 		placeOrderButton.click();
-		return new OrderConfirmation(driver);
+		return new OrderConfirmationPage(driver);
 	}
 
 }

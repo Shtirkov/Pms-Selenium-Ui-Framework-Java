@@ -1,7 +1,6 @@
 package seleniumuiframework.abstractcomponents;
 
 import java.time.Duration;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,7 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import seleniumuiframework.pageobjects.MyCart;
+import seleniumuiframework.pageobjects.MyCartPage;
 
 public abstract class BasePage {
 	
@@ -44,10 +43,10 @@ public abstract class BasePage {
 		wait.until(ExpectedConditions.elementToBeClickable(locator));
 	}
 	
-	public MyCart goToMyCartPage() {
+	public MyCartPage goToMyCartPage() {
 		waitForElementToBeClickable(By.cssSelector(CART_BUTTON_LOCATOR));
 		cartButton.click();	
-		return new MyCart(driver);
+		return new MyCartPage(driver);
 	}
 	
 	public String getToastMessageText() {

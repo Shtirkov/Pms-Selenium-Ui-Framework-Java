@@ -2,11 +2,10 @@ package seleniumuiframework.tests;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import seleniumuiframework.pageobjects.Checkout;
-import seleniumuiframework.pageobjects.MyCart;
-import seleniumuiframework.pageobjects.OrderConfirmation;
-import seleniumuiframework.pageobjects.Product;
+import seleniumuiframework.pageobjects.CheckoutPage;
+import seleniumuiframework.pageobjects.MyCartPage;
+import seleniumuiframework.pageobjects.OrderConfirmationPage;
+import seleniumuiframework.pageobjects.ProductPage;
 import seleniumuiframework.testcomponents.BaseTest;
 import java.io.IOException;
 import java.util.List;
@@ -15,12 +14,12 @@ import org.openqa.selenium.WebElement;
 public class SubmitOrderTests extends BaseTest {
 	
 	@Test
-	public void submitOrder() throws IOException {
+	public void SubmitOrder() throws IOException {
 		String myProduct = "Iphone 13 pro";		
-		Product productPage = loginPage.login(USER_EMAIL, USER_PASSWORD);
+		ProductPage productPage = loginPage.login(USER_EMAIL, USER_PASSWORD);
 		WebElement product = productPage.getProductByName(myProduct);
 		productPage.addProductToCart(product);
-		MyCart myCartPage = productPage.goToMyCartPage();
+		MyCartPage myCartPage = productPage.goToMyCartPage();
 
 		List<String> expectedItemsInTheCart = List.of(myProduct);
 		List<WebElement> actualItemsInTheCart = myCartPage.getItemsInTheCart();
@@ -33,9 +32,9 @@ public class SubmitOrderTests extends BaseTest {
 			Assert.assertEquals(actualProductName, expectedProductName);
 		}
 
-		Checkout checkoutPage = myCartPage.clickCheckoutButton();
+		CheckoutPage checkoutPage = myCartPage.clickCheckoutButton();
 		checkoutPage.selectCountryByName("United states");
-		OrderConfirmation orderConfirmationPage = checkoutPage.placeOrder();
+		OrderConfirmationPage orderConfirmationPage = checkoutPage.placeOrder();
 
 		Assert.assertEquals(orderConfirmationPage.getOrderConfirmationMessage(), "thankyou for the order.");	}
 

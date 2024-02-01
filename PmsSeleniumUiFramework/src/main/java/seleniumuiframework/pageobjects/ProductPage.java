@@ -8,9 +8,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import seleniumuiframework.abstractcomponents.BasePage;
 
-public class Product extends BasePage {
+public class ProductPage extends BasePage {
 
-	public Product(WebDriver driver) {
+	public ProductPage(WebDriver driver) {
 		super(driver);		
 		PageFactory.initElements(driver, this);
 	}
