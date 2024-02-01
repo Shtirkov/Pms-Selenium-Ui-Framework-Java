@@ -9,16 +9,15 @@ import seleniumuiframework.abstractcomponents.BasePage;
 public class LoginPage extends BasePage{
 
 	private WebDriver driver;
+	private final String USER_EMAIL_LOCATOR ="userEmail";
+	private final String USER_PASSWORD_LOCATOR ="userPassword";
+	private final String LOGIN_LOCATOR ="login";
 	
 	public LoginPage(WebDriver driver) {
 		super(driver);
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
-	
-	private final String USER_EMAIL_LOCATOR ="userEmail";
-	private final String USER_PASSWORD_LOCATOR ="userPassword";
-	private final String LOGIN_LOCATOR ="login";
 	
 	@FindBy(id=USER_EMAIL_LOCATOR)
 	WebElement userEmail;

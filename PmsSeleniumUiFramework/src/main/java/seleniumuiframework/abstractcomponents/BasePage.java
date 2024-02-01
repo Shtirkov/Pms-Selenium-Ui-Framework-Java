@@ -10,11 +10,16 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import seleniumuiframework.pageobjects.MyCartPage;
+import seleniumuiframework.pageobjects.OrdersPage;
 
 public abstract class BasePage {
 	
 	private WebDriver driver;
 	private WebDriverWait wait;
+	
+	private final String CART_BUTTON_LOCATOR = "[routerlink*='cart']";
+	private final String ORDERS_BUTTON_LOCATOR = "[routerlink*='myorders']";
+	protected final String TOAST_MESSAGE_LOCATOR = "toast-container";
 	
 	public BasePage(WebDriver driver) {
 		this.driver = driver;
@@ -22,14 +27,14 @@ public abstract class BasePage {
 		PageFactory.initElements(driver, this);
 	}
 	
-	private final String CART_BUTTON_LOCATOR = "[routerlink*='cart']";
-	protected final String TOAST_MESSAGE_LOCATOR = "toast-container";
-	
 	@FindBy(id = TOAST_MESSAGE_LOCATOR)
 	WebElement toastMessage;
 	
 	@FindBy(css = CART_BUTTON_LOCATOR)
 	WebElement cartButton;
+	
+	@FindBy(css = ORDERS_BUTTON_LOCATOR)
+	WebElement ordersButton;
 	
 	protected void waitForElementToAppear(By locator) {		
 		wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
@@ -49,7 +54,14 @@ public abstract class BasePage {
 		return new MyCartPage(driver);
 	}
 	
+	public OrdersPage goToOrdersPage() {
+		waitForElementToBeClickable(By.cssSelector(ORDERS_BUTTON_LOCATOR));
+		ordersButton.click();	
+		return new OrdersPage(driver);
+	}
+	
 	public String getToastMessageText() {
+		waitForElementToAppear(By.id(TOAST_MESSAGE_LOCATOR));
 		return toastMessage.getText();
 	}
 	

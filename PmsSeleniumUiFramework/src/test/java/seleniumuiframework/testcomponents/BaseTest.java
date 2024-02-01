@@ -72,7 +72,7 @@ public class BaseTest {
 		driver.manage().window().maximize();
 	}
 
-	@BeforeMethod
+	@BeforeMethod(alwaysRun=true)
 	public void launchApplication() throws IOException {
 		initializeDriver();
 		loginPage = new LoginPage(driver);		
@@ -80,7 +80,7 @@ public class BaseTest {
 		loginPage.goTo(applicationUrl);				
 	}
 	
-	@AfterMethod
+	@AfterMethod(alwaysRun=true)
 	public void closeDriver() {
 		driver.close();
 	}

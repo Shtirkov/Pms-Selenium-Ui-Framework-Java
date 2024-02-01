@@ -8,12 +8,12 @@ import seleniumuiframework.abstractcomponents.BasePage;
 
 public class OrderConfirmationPage extends BasePage {
 
+	private final String ORDER_CONFIRMATION_MESSAGE_LOCATOR = ".hero-primary";
+	
 	public OrderConfirmationPage(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(driver, this);
 	}
-	
-	private final String ORDER_CONFIRMATION_MESSAGE_LOCATOR = ".hero-primary";
 	
 	@FindBy(css = ORDER_CONFIRMATION_MESSAGE_LOCATOR)
 	WebElement orderConfirmationMessage;

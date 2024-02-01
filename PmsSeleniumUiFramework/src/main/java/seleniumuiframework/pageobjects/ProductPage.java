@@ -9,15 +9,14 @@ import org.openqa.selenium.support.PageFactory;
 import seleniumuiframework.abstractcomponents.BasePage;
 
 public class ProductPage extends BasePage {
+	
+	private final String PRODUCTS_LOCATOR = ".mb-3";	
+	private final String ADD_TO_CART_LOCATOR = ".w-10";
 
 	public ProductPage(WebDriver driver) {
 		super(driver);		
 		PageFactory.initElements(driver, this);
 	}
-
-	private final String PRODUCTS_LOCATOR = ".mb-3";
-	
-	private final String ADD_TO_CART_LOCATOR = ".w-10";
 	
 	@FindBy(css = PRODUCTS_LOCATOR)
 	List<WebElement> products;

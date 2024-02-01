@@ -11,16 +11,15 @@ import seleniumuiframework.abstractcomponents.BasePage;
 public class CheckoutPage extends BasePage {
 
 	private WebDriver driver;
+	private final String COUNTRY_DROPDOWN_LOCATOR = "[placeholder*='Country']";
+	private final String COUNTRY_DROPDOWN_OPTIONS_LOCATOR = ".ta-item";
+	private final String PLACE_ORDER_BUTTON_LOCATOR = ".action__submit";
 	
 	public CheckoutPage(WebDriver driver) {
 		super(driver);
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
-
-	private final String COUNTRY_DROPDOWN_LOCATOR = "[placeholder*='Country']";
-	private final String COUNTRY_DROPDOWN_OPTIONS_LOCATOR = ".ta-item";
-	private final String PLACE_ORDER_BUTTON_LOCATOR = ".action__submit";
 
 	@FindBy(css = COUNTRY_DROPDOWN_LOCATOR)
 	WebElement countryDropdown;

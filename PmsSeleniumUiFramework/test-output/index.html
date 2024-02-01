@@ -92,7 +92,7 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">2 methods,   2 passed</span>
+                    <span class="method-stats">3 methods,   3 passed</span>
                   </li>
                   <li>
                     <span class="method-list-title passed">Passed methods</span>
@@ -104,6 +104,11 @@
                       <span>
                         <img src="passed.png" width="3%"/>
                         <a href="#" panel-name="suite-Suite" title="seleniumuiframework.tests.ErrorValidationsTests" class="method navigator-link" hash-for-method="InvalidLoginCredentialsErrorValidation">InvalidLoginCredentialsErrorValidation</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Suite" title="seleniumuiframework.tests.SubmitOrderTests" class="method navigator-link" hash-for-method="OrderIsDisplayedInOrdersPageWhenItIsSubmitted">OrderIsDisplayedInOrdersPageWhenItIsSubmitted</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                       <span>
@@ -144,6 +149,13 @@
               <span class="class-name">seleniumuiframework.tests.SubmitOrderTests</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="OrderIsDisplayedInOrdersPageWhenItIsSubmitted">
+                  </a> <!-- OrderIsDisplayedInOrdersPageWhenItIsSubmitted -->
+                  <span class="method-name">OrderIsDisplayedInOrdersPageWhenItIsSubmitted</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
               <div class="method">
                 <div class="method-content">
                   <a name="SubmitOrder">
@@ -213,20 +225,24 @@ data.addColumn('number', 'Number');
 data.addColumn('string', 'Method');
 data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
-data.addRows(2);
+data.addRows(3);
 data.setCell(0, 0, 0)
 data.setCell(0, 1, 'SubmitOrder')
 data.setCell(0, 2, 'seleniumuiframework.tests.SubmitOrderTests')
-data.setCell(0, 3, 5541);
+data.setCell(0, 3, 5958);
 data.setCell(1, 0, 1)
-data.setCell(1, 1, 'InvalidLoginCredentialsErrorValidation')
-data.setCell(1, 2, 'seleniumuiframework.tests.ErrorValidationsTests')
-data.setCell(1, 3, 381);
+data.setCell(1, 1, 'OrderIsDisplayedInOrdersPageWhenItIsSubmitted')
+data.setCell(1, 2, 'seleniumuiframework.tests.SubmitOrderTests')
+data.setCell(1, 3, 715);
+data.setCell(2, 0, 2)
+data.setCell(2, 1, 'InvalidLoginCredentialsErrorValidation')
+data.setCell(2, 2, 'seleniumuiframework.tests.ErrorValidationsTests')
+data.setCell(2, 3, 402);
 window.suiteTableData['Suite']= { tableData: data, tableDiv: 'times-div-Suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 5 seconds</span>
+              <span class="suite-total-time">Total running time: 7 seconds</span>
               <div id="times-div-Suite">
               </div> <!-- times-div-Suite -->
             </div> <!-- times-div -->
@@ -259,26 +275,38 @@ return data;
               </div> <!-- configuration-method before -->
               <div class="test-method">
                 <span class="method-name">SubmitOrder</span>
-                <span class="method-start">3601 ms</span>
+                <span class="method-start">3674 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
                 <span class="method-name">closeDriver</span>
-                <span class="method-start">9144 ms</span>
+                <span class="method-start">9634 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">launchApplication</span>
+                <span class="method-start">9732 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">OrderIsDisplayedInOrdersPageWhenItIsSubmitted</span>
+                <span class="method-start">12980 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">closeDriver</span>
+                <span class="method-start">13696 ms</span>
               </div> <!-- configuration-method after -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">seleniumuiframework.tests.ErrorValidationsTests</div> <!-- chronological-class-name -->
               <div class="configuration-method before">
                 <span class="method-name">launchApplication</span>
-                <span class="method-start">9235 ms</span>
+                <span class="method-start">13788 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
                 <span class="method-name">InvalidLoginCredentialsErrorValidation</span>
-                <span class="method-start">12515 ms</span>
+                <span class="method-start">17570 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
                 <span class="method-name">closeDriver</span>
-                <span class="method-start">12896 ms</span>
+                <span class="method-start">17972 ms</span>
               </div> <!-- configuration-method after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
