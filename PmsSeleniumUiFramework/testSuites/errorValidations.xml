@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="ErrorValidations">
+	<groups>
+		<run>
+			<include name="ErrorValidations" />
+		</run>
+	</groups>
+	<test name="ErrorValidations">
+		<classes>
+			<class name="seleniumuiframework.tests.ErrorValidationsTests" />
+		</classes>
+	</test> 
+</suite> 

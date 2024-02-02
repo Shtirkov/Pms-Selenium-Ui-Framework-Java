@@ -15,7 +15,7 @@ public class SubmitOrderTests extends BaseTest {
 	
 	private String myProduct = "Iphone 13 pro";
 	
-	@Test
+	@Test(groups= {"Orders"}) 
 	public void SubmitOrder() throws IOException {
 		String myProduct = "Iphone 13 pro";		
 		ProductPage productPage = loginPage.login(USER_EMAIL, USER_PASSWORD);
@@ -30,7 +30,8 @@ public class SubmitOrderTests extends BaseTest {
 		Assert.assertEquals(orderConfirmationPage.getOrderConfirmationMessage(), "thankyou for the order.");
 		}
 	
-	@Test(dependsOnMethods = {"SubmitOrder"})
+	@Test(dependsOnMethods = {"SubmitOrder"}, groups= {"Orders"})
+	
 	public void OrderIsDisplayedInOrdersPageWhenItIsSubmitted() {		
 		ProductPage productPage = loginPage.login(USER_EMAIL, USER_PASSWORD);
 		OrdersPage ordersPage = productPage.goToOrdersPage();

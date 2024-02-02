@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Orders">
+	<groups>
+		<run>
+			<include name="Orders" />
+		</run>
+	</groups>
+	<test name="Orders">
+		<classes>
+			<class name="seleniumuiframework.tests.SubmitOrderTests" />
+		</classes>
+	</test> 
+</suite> 
