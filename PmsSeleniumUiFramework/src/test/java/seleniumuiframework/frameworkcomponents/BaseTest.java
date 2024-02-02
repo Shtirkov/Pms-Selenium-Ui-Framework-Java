@@ -1,4 +1,4 @@
-package seleniumuiframework.testcomponents;
+package seleniumuiframework.frameworkcomponents;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -19,11 +19,8 @@ public class BaseTest {
 	private Properties prop;
 	private FileInputStream fis;
 	private WebDriver driver;
+	public DataProvider dp;
 	
-	public final String USER_EMAIL;
-	public final String USER_PASSWORD;
-	public final String INVALID_USER_EMAIL;
-	public final String INVALID_USER_PASSWORD;	
 	public LoginPage loginPage;
 
 	public BaseTest() {
@@ -39,12 +36,9 @@ public class BaseTest {
 			prop.load(fis);
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
+		}	
 		
-		USER_EMAIL = prop.getProperty("userEmail");
-		USER_PASSWORD = prop.getProperty("userPassword");
-		INVALID_USER_EMAIL = prop.getProperty("invalidUserEmail");
-		INVALID_USER_PASSWORD = prop.getProperty("invalidUserPassword");
+		dp = new DataProvider();
 	}
 	
 	private void initializeDriver() throws IOException {
