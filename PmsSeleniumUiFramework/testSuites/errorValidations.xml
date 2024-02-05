@@ -5,9 +5,14 @@
 			<include name="ErrorValidations" />
 		</run>
 	</groups>
+
+	<listeners>
+		<listener class-name="seleniumuiframework.testcomponents.Listeners" />
+	</listeners>
+
 	<test name="ErrorValidations">
 		<classes>
 			<class name="seleniumuiframework.tests.ErrorValidationsTests" />
 		</classes>
-	</test> 
+	</test>
 </suite> 

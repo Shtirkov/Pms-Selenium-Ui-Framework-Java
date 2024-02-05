@@ -17,6 +17,7 @@ public class ErrorValidationsTests extends BaseTest {
 	public void InvalidLoginCredentialsErrorValidation(String userEmail, String userPassword) throws IOException {
 		loginPage.login(userEmail, userPassword);
 		Assert.assertEquals(loginPage.getToastMessageText(), "Incorrect email or password.");
+		Assert.assertTrue(false);
 	}
 
 	@DataProvider(name = "userData")

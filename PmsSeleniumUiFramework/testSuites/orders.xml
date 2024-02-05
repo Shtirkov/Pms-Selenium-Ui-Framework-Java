@@ -5,6 +5,11 @@
 			<include name="Orders" />
 		</run>
 	</groups>
+	
+	<listeners>
+		<listener class-name="seleniumuiframework.testcomponents.Listeners" />
+	</listeners>
+	
 	<test name="Orders">
 		<classes>
 			<class name="seleniumuiframework.tests.SubmitOrderTests" />

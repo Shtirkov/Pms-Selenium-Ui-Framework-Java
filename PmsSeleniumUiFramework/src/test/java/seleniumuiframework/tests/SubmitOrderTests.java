@@ -38,7 +38,7 @@ public class SubmitOrderTests extends BaseTest {
 	@Test(dependsOnMethods = { "SubmitOrder" }, groups = { "Orders" }, dataProvider = "userData")
 
 	public void OrderIsDisplayedInOrdersPageWhenItIsSubmitted(String userEmail, String userPassword) {
-		ProductPage productPage = loginPage.login(userEmail, userPassword);
+		ProductPage productPage = (ProductPage) loginPage.login(userEmail, userPassword);
 		OrdersPage ordersPage = productPage.goToOrdersPage();
 		Assert.assertTrue(ordersPage.verifyThatOrderIsPlaced(myProduct));
 	}
