@@ -4,12 +4,12 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import seleniumuiframework.frameworkcomponents.BaseTest;
 import seleniumuiframework.pageobjects.CheckoutPage;
 import seleniumuiframework.pageobjects.MyCartPage;
 import seleniumuiframework.pageobjects.OrderConfirmationPage;
 import seleniumuiframework.pageobjects.OrdersPage;
 import seleniumuiframework.pageobjects.ProductPage;
+import seleniumuiframework.testcomponents.BaseTest;
 
 import java.io.IOException;
 import java.util.HashMap;

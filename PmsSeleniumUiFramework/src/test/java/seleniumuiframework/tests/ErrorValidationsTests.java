@@ -3,7 +3,7 @@ package seleniumuiframework.tests;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import seleniumuiframework.frameworkcomponents.BaseTest;
+import seleniumuiframework.testcomponents.BaseTest;
 
 import java.io.IOException;
 import java.util.HashMap;

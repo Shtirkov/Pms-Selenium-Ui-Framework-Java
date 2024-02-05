@@ -1,4 +1,4 @@
-package seleniumuiframework.frameworkcomponents;
+package seleniumuiframework.utils;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
