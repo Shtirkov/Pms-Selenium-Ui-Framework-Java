@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite parallel="tests" name="Suite">
+
+<listeners>
+		<listener class-name="seleniumuiframework.testcomponents.Listeners" />
+	</listeners>
+
+  <test thread-count="5" name="ErrorValidations">
+    <classes>     
+      <class name="seleniumuiframework.tests.ErrorValidationsTests"/>
+    </classes>
+  </test> 
+  
+  <test thread-count="5" name="SubmitOrder">
+    <classes>     
+      <class name="seleniumuiframework.tests.SubmitOrderTests"/>
+    </classes>
+  </test> 
+</suite> 

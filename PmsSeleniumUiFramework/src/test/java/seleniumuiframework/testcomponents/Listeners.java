@@ -9,6 +9,7 @@ import org.testng.ITestResult;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
 
 import seleniumuiframework.utils.ExtentReporter;
 
@@ -29,7 +30,7 @@ public class Listeners extends BaseTest implements ITestListener {
 
 	@Override
 	public void onTestSuccess(ITestResult result) {
-
+		test.log(Status.PASS, "Test passed");
 	}
 
 	@Override
