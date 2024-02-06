@@ -1,7 +1,7 @@
 package seleniumuiframework.tests;
 
 import org.testng.annotations.Test;
-import org.testng.AssertJUnit;
+import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import seleniumuiframework.testcomponents.BaseTest;
 import java.io.IOException;
@@ -13,8 +13,7 @@ public class ErrorValidationsTests extends BaseTest {
 	@Test(groups = { "ErrorValidations" }, dataProvider="userData")
 	public void InvalidLoginCredentialsErrorValidation(String userEmail, String userPassword) throws IOException {
 		loginPage.login(userEmail, userPassword);
-		AssertJUnit.assertEquals(loginPage.getToastMessageText(), "Incorrect email or password.");
-		AssertJUnit.assertTrue(false);
+		Assert.assertEquals(loginPage.getToastMessageText(), "Incorrect email or password..");		
 	}
 
 	@DataProvider(name = "userData")

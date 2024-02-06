@@ -1,7 +1,6 @@
 package seleniumuiframework.tests;
 
 import org.testng.annotations.Test;
-import org.testng.AssertJUnit;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import seleniumuiframework.pageobjects.CheckoutPage;
@@ -31,7 +30,7 @@ public class SubmitOrderTests extends BaseTest {
 		checkoutPage.selectCountryByName("United states");
 		OrderConfirmationPage orderConfirmationPage = checkoutPage.placeOrder();
 
-		AssertJUnit.assertEquals(orderConfirmationPage.getOrderConfirmationMessage(), "thankyou for the order.");
+		Assert.assertEquals(orderConfirmationPage.getOrderConfirmationMessage(), "thankyou for the order.");
 	}
 
 	@Test(dependsOnMethods = { "SubmitOrder" }, groups = { "Orders" }, dataProvider = "userData")

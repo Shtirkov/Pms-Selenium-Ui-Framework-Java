@@ -17,25 +17,28 @@ public class Listeners extends BaseTest implements ITestListener {
 	private ExtentReporter er;
 	private ExtentReports reporter;
 	private ExtentTest test;
+	private ThreadLocal<ExtentTest> threads;
 
 	public Listeners() {
 		er = new ExtentReporter();
 		reporter = er.getExtentReport();
+		threads = new ThreadLocal<ExtentTest>();
 	}
 
 	@Override
 	public void onTestStart(ITestResult result) {
 		test = reporter.createTest(result.getMethod().getMethodName());
+		threads.set(test);
 	}
 
 	@Override
 	public void onTestSuccess(ITestResult result) {
-		test.log(Status.PASS, "Test passed");
+		threads.get().log(Status.PASS, "Test passed");
 	}
 
 	@Override
 	public void onTestFailure(ITestResult result) {
-		test.fail(result.getThrowable());
+		threads.get().fail(result.getThrowable());
 		WebDriver driver = (WebDriver) result.getTestContext().getAttribute("driver");
 		String filePath = "";
 		
@@ -45,7 +48,7 @@ public class Listeners extends BaseTest implements ITestListener {
 			e.printStackTrace();
 		}
 		
-		test.addScreenCaptureFromPath(filePath);
+		threads.get().addScreenCaptureFromPath(filePath);
 	}
 
 	@Override
