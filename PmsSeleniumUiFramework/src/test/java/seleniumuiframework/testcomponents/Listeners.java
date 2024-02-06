@@ -52,8 +52,8 @@ public class Listeners extends BaseTest implements ITestListener {
 	}
 
 	@Override
-	public void onTestSkipped(ITestResult result) {
-
+	public void onTestSkipped(ITestResult result) {		
+		threads.get().skip("Marked as skipped because the test is ignored or because of the retry policy");
 	}
 
 	@Override

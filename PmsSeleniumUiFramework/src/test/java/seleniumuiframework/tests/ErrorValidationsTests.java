@@ -4,13 +4,15 @@ import org.testng.annotations.Test;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import seleniumuiframework.testcomponents.BaseTest;
+import seleniumuiframework.testcomponents.Retries;
+
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
 public class ErrorValidationsTests extends BaseTest {
 
-	@Test(groups = { "ErrorValidations" }, dataProvider="userData")
+	@Test(groups = { "ErrorValidations" }, dataProvider="userData", retryAnalyzer = Retries.class)
 	public void InvalidLoginCredentialsErrorValidation(String userEmail, String userPassword) throws IOException {
 		loginPage.login(userEmail, userPassword);
 		Assert.assertEquals(loginPage.getToastMessageText(), "Incorrect email or password..");		
