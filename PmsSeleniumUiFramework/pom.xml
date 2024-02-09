@@ -61,7 +61,7 @@
 
 	<profiles>
 		<profile>
-			<id>orders-tests</id>
+			<id>Orders</id>
 			<build>
 				<plugins>
 					<plugin>
@@ -81,7 +81,7 @@
 		</profile>
 
 		<profile>
-			<id>error-validations-tests</id>
+			<id>ErrorValidations</id>
 			<build>
 				<plugins>
 					<plugin>
@@ -101,7 +101,7 @@
 		</profile>
 
 		<profile>
-			<id>regression-tests</id>
+			<id>Regression</id>
 			<build>
 				<plugins>
 					<plugin>
