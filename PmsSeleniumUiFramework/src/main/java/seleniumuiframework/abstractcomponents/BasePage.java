@@ -14,7 +14,7 @@ import seleniumuiframework.pageobjects.OrdersPage;
 
 public abstract class BasePage {
 	
-	private WebDriver driver;
+	protected WebDriver driver;
 	private WebDriverWait wait;
 	
 	private final String CART_BUTTON_LOCATOR = "[routerlink*='cart']";

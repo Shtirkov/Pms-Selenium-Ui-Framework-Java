@@ -12,9 +12,14 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.AbstractDriverOptions;
 import org.openqa.selenium.safari.SafariDriver;
+import org.openqa.selenium.safari.SafariOptions;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -49,23 +54,49 @@ public class BaseTest {
 	}
 
 	private void initializeDriver() throws IOException {
-		String browserType = System.getProperty("browser") == null ? prop.getProperty("browserType") : System.getProperty("browser");
-		
+		String browserType = System.getProperty("browser") == null ? prop.getProperty("browserType")
+				: System.getProperty("browser");
+		Boolean headlessMode = Boolean
+				.parseBoolean(System.getProperty("headless") == null ? prop.getProperty("headlessMode")
+						: System.getProperty("headless"));
+		AbstractDriverOptions options = null;
+
 		switch (browserType) {
 		case "Chrome":
-			driver = new ChromeDriver();
+			options = new ChromeOptions();
+			if (headlessMode) {
+				((ChromeOptions) options).addArguments("headless");
+				((ChromeOptions) options).addArguments("window-size=1400,900");
+			}
+			driver = new ChromeDriver((ChromeOptions) options);
 			break;
 		case "Firefox":
-			driver = new FirefoxDriver();
+			options = new FirefoxOptions();
+			if (headlessMode) {
+				((FirefoxOptions) options).addArguments("headless");
+				((FirefoxOptions) options).addArguments("window-size=1400,900");
+			}
+			driver = new FirefoxDriver((FirefoxOptions) options);
 			break;
 		case "Edge":
-			driver = new EdgeDriver();
+			options = new EdgeOptions();
+			if (headlessMode) {
+				((EdgeOptions) options).addArguments("headless");
+				((EdgeOptions) options).addArguments("window-size=1400,900");
+			}
+			driver = new EdgeDriver((EdgeOptions) options);
 			break;
 		case "Safari":
+			// Headless mode for Safari browser is not supported at the moment
 			driver = new SafariDriver();
 			break;
 		default:
-			driver = new ChromeDriver();
+			options = new ChromeOptions();
+			if (headlessMode) {
+				((ChromeOptions) options).addArguments("headless");
+				((ChromeOptions) options).addArguments("window-size=1400,900");
+			}
+			driver = new ChromeDriver((ChromeOptions) options);
 			break;
 		}
 
