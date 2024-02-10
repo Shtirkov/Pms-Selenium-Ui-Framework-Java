@@ -59,30 +59,31 @@ public class BaseTest {
 		Boolean headlessMode = Boolean
 				.parseBoolean(System.getProperty("headless") == null ? prop.getProperty("headlessMode")
 						: System.getProperty("headless"));
+		
 		AbstractDriverOptions options = null;
 
 		switch (browserType) {
 		case "Chrome":
 			options = new ChromeOptions();
 			if (headlessMode) {
-				((ChromeOptions) options).addArguments("headless");
-				((ChromeOptions) options).addArguments("window-size=1400,900");
+				((ChromeOptions) options).addArguments("-headless");
+				((ChromeOptions) options).addArguments("-window-size=1400,900");
 			}
 			driver = new ChromeDriver((ChromeOptions) options);
 			break;
 		case "Firefox":
 			options = new FirefoxOptions();
 			if (headlessMode) {
-				((FirefoxOptions) options).addArguments("headless");
-				((FirefoxOptions) options).addArguments("window-size=1400,900");
+				((FirefoxOptions) options).addArguments("-headless");
+				((FirefoxOptions) options).addArguments("-window-size=1400,900");
 			}
 			driver = new FirefoxDriver((FirefoxOptions) options);
 			break;
 		case "Edge":
 			options = new EdgeOptions();
 			if (headlessMode) {
-				((EdgeOptions) options).addArguments("headless");
-				((EdgeOptions) options).addArguments("window-size=1400,900");
+				((EdgeOptions) options).addArguments("-headless");
+				((EdgeOptions) options).addArguments("-window-size=1400,900");
 			}
 			driver = new EdgeDriver((EdgeOptions) options);
 			break;
