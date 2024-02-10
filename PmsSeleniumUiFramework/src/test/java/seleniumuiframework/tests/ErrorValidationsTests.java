@@ -15,7 +15,7 @@ public class ErrorValidationsTests extends BaseTest {
 	@Test(groups = { "ErrorValidations" }, dataProvider="userData", retryAnalyzer = Retries.class)
 	public void InvalidLoginCredentialsErrorValidation(String userEmail, String userPassword) throws IOException {
 		loginPage.login(userEmail, userPassword);
-		Assert.assertEquals(loginPage.getToastMessageText(), "Incorrect email or password..");		
+		Assert.assertEquals(loginPage.getToastMessageText(), "Incorrect email or password.");		
 	}
 
 	@DataProvider(name = "userData")
